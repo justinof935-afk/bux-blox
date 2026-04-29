@@ -1,265 +1,239 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuxBlox - Robux Premium</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #e2ff00;
-            --bg: #050505;
-            --card: #111111;
-            --text: #ffffff;
-            --text-dim: #a1a1a1;
-            --border: rgba(255, 255, 255, 0.08);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Sensi</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-        /* --- SISTEMA DE LOGIN --- */
-        .auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 9999; display: flex; align-items: center; justify-content: center; }
-        .auth-box { background: var(--card); padding: 40px; border-radius: 28px; border: 1px solid var(--border); width: 90%; max-width: 400px; text-align: center; }
-        .auth-box input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 14px; background: #000; border: 1px solid var(--border); color: white; outline: none; }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
 
-        /* --- LAYOUT --- */
-        header { display: flex; align-items: center; justify-content: space-between; padding: 20px 6%; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        .logo { background: var(--primary); color: #000; padding: 8px 16px; font-weight: 800; border-radius: 8px; font-size: 0.9rem; }
-        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-        
-        /* --- CARDS DE PRODUTO --- */
-        .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
-        .price-card { background: var(--card); border: 1px solid var(--border); padding: 25px 15px; border-radius: 24px; cursor: pointer; text-align: center; transition: 0.3s; }
-        .price-card.active { background: var(--primary); color: #000; border-color: var(--primary); }
-        .price-card .amount { display: block; font-weight: 800; font-size: 1.2rem; }
+body {
+    height: 100vh;
+    background: radial-gradient(circle at top, #1a0000, #000);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-        .btn-main { width: 100%; padding: 20px; border-radius: 18px; border: none; background: var(--primary); color: #000; font-weight: 800; cursor: pointer; text-transform: uppercase; }
-        
-        /* --- MENU --- */
-        .sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: var(--card); border-right: 1px solid var(--border); z-index: 2000; transition: 0.4s; padding: 40px; }
-        .sidebar.open { left: 0; }
-        .nav-link { padding: 15px 0; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; gap: 10px; }
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #ff0000, transparent, #ff0000);
+    animation: moveBg 8s linear infinite;
+    opacity: 0.08;
+}
 
-        /* --- MODAIS --- */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal-content { background: var(--card); width: 90%; max-width: 400px; padding: 35px; border-radius: 32px; border: 1px solid var(--border); text-align: center; }
+@keyframes moveBg {
+    0% { transform: translate(-25%, -25%) rotate(0deg); }
+    100% { transform: translate(-25%, -25%) rotate(360deg); }
+}
 
-        .btn-wa { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; background: #25d366; transition: 0.3s; }
-        .btn-wa:hover { opacity: 0.8; }
-    </style>
+.card {
+    position: relative;
+    width: 340px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+h1 {
+    color: #ff2b2b;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #1a1a1a;
+    color: white;
+    outline: none;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+input:focus {
+    box-shadow: 0 0 10px #ff0000;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(45deg, #ff0000, #ff4d4d);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff0000;
+}
+
+.result {
+    display: none;
+}
+
+.sensi-box {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.sensi-box p {
+    margin: 6px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.valor {
+    color: #ff2b2b;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #ff0000;
+    margin: 10px 0;
+}
+
+.voltar {
+    margin-top: 15px;
+    background: #111;
+    border: 1px solid #ff0000;
+}
+
+/* Créditos */
+.credito {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 12px;
+    letter-spacing: 1px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.topo {
+    top: 8px;
+}
+
+.baixo {
+    bottom: 8px;
+}
+</style>
 </head>
+
 <body>
 
-    <div id="auth-screen" class="auth-overlay">
-        <div class="auth-box" id="box-login">
-            <h2 style="margin-bottom: 10px;">Login BuxBlox</h2>
-            <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 0.8rem;">Acesse sua conta para comprar</p>
-            <input type="email" id="l-email" placeholder="E-mail">
-            <input type="password" id="l-pass" placeholder="Senha">
-            <button class="btn-main" onclick="entrar()">Entrar</button>
-            <p onclick="irParaCadastro()" style="margin-top: 20px; cursor: pointer; color: var(--text-dim);">Não tem conta? <span style="color: var(--primary);">Cadastre-se</span></p>
-        </div>
-        <div class="auth-box" id="box-reg" style="display: none;">
-            <h2 style="margin-bottom: 20px;">Criar Conta</h2>
-            <input type="text" id="r-name" placeholder="Seu Nome">
-            <input type="email" id="r-email" placeholder="Seu E-mail">
-            <input type="password" id="r-pass" placeholder="Crie uma Senha">
-            <button class="btn-main" onclick="cadastrar()">Finalizar Cadastro</button>
-            <p onclick="irParaLogin()" style="margin-top: 20px; cursor: pointer; color: var(--text-dim);">Já tem conta? <span style="color: var(--primary);">Login</span></p>
-        </div>
-    </div>
+<!-- Créditos -->
+<div class="credito topo">@felliipzh</div>
+<div class="credito baixo">@felliipzh</div>
 
-    <div id="main-app" style="display: none;">
-        <header>
-            <i class="fa-solid fa-bars" onclick="openNav()" style="cursor: pointer; font-size: 1.2rem;"></i>
-            <div class="logo">BUXBLOX</div>
-            <div style="width: 20px;"></div>
-        </header>
+<div class="card" id="home">
+    <h1>GERADOR DE SENSI</h1>
 
-        <nav id="menu" class="sidebar">
-            <div style="text-align: right; margin-bottom: 20px;"><i class="fa-solid fa-xmark" onclick="closeNav()" style="cursor: pointer;"></i></div>
-            <h3 id="u-name">Usuário</h3>
-            <p id="u-role" style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 20px;">Membro</p>
-            
-            <div id="admin-btn" class="nav-link" style="display: none; color: var(--primary);" onclick="openAdmin()">
-                <i class="fa-solid fa-tags"></i> Gerenciar Preços
-            </div>
-            
-            <div class="nav-link" onclick="logout()" style="color: #ff4747; border: none; margin-top: 20px;">
-                <i class="fa-solid fa-right-from-bracket"></i> Sair da conta
-            </div>
-        </nav>
+    <input type="text" id="celular" placeholder="Digite seu celular">
 
-        <div class="container">
-            <div class="price-grid" id="products"></div>
-            
-            <div style="background: var(--card); padding: 25px; border-radius: 25px; border: 1px solid var(--border); text-align: center;">
-                <p style="color: var(--text-dim); margin-bottom: 5px;">Total do pedido</p>
-                <h2 id="total-text" style="font-size: 2.2rem; margin-bottom: 20px;">R$ 0,00</h2>
-                <button class="btn-main" onclick="document.getElementById('m-buy').style.display='flex'">Comprar Robux</button>
-            </div>
-        </div>
-    </div>
+    <button onclick="gerarSensi()">GERAR</button>
+</div>
 
-    <div id="m-admin" class="modal">
-        <div class="modal-content">
-            <h2 style="margin-bottom: 20px;">Alterar Preços</h2>
-            <div id="admin-list" style="text-align: left; margin-bottom: 20px; max-height: 300px; overflow-y: auto;"></div>
-            <button class="btn-main" onclick="salvarPrecos()">Salvar Alterações</button>
-            <p onclick="closeAdmin()" style="margin-top: 15px; cursor: pointer; color: var(--text-dim);">Voltar ao site</p>
-        </div>
-    </div>
+<div class="card result" id="resultado">
+    <h1>SENSI PERFEITA 🔥</h1>
 
-    <div id="m-buy" class="modal">
-        <div class="modal-content">
-            <h2>Quase lá!</h2>
-            <p style="color: var(--text-dim); margin-top: 10px;">Insira seu Nick do Roblox:</p>
-            <input type="text" id="nick" placeholder="Ex: Nick_Roblox123" style="width: 100%; padding: 15px; margin: 15px 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 12px;">
-            
-            <p style="margin-bottom: 15px; font-size: 0.8rem; color: var(--text-dim);">Clique em um atendente para pagar:</p>
-            
-            <a href="#" id="wa-1" class="btn-wa" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i> ATENDENTE 1
-            </a>
-            <a href="#" id="wa-2" class="btn-wa" target="_blank" style="background: #128c7e;">
-                <i class="fa-brands fa-whatsapp"></i> ATENDENTE 2
-            </a>
-            
-            <p onclick="document.getElementById('m-buy').style.display='none'" style="margin-top: 15px; cursor: pointer; color: var(--text-dim);">Cancelar</p>
-        </div>
-    </div>
+    <div class="sensi-box" id="sensiDados"></div>
 
-    <script>
-        // EMAILS COM ACESSO AO PAINEL
-        const ADMINS_AUTORIZADOS = ["justinof935@gmail.com", "aparecidaclaudino977@gmail.com"];
+    <button class="voltar" onclick="voltar()">VOLTAR</button>
+</div>
 
-        // BANCO DE DADOS LOCAL
-        if(!localStorage.getItem('bx_u')) localStorage.setItem('bx_u', JSON.stringify([]));
-        if(!localStorage.getItem('bx_i')) {
-            localStorage.setItem('bx_i', JSON.stringify([
-                {id: 1, n: "415 Robux", p: 25.00},
-                {id: 2, n: "1000 Robux", p: 59.00},
-                {id: 3, n: "2000 Robux", p: 115.00},
-                {id: 4, n: "5250 Robux", p: 290.00}
-            ]));
-        }
+<script>
+function gerarNumero(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-        let selecionado = null;
+function gerarSensi() {
+    let celular = document.getElementById("celular").value.toLowerCase().trim();
 
-        function irParaCadastro() { document.getElementById('box-login').style.display='none'; document.getElementById('box-reg').style.display='block'; }
-        function irParaLogin() { document.getElementById('box-reg').style.display='none'; document.getElementById('box-login').style.display='block'; }
+    if (celular === "") {
+        alert("Digite o modelo do celular!");
+        return;
+    }
 
-        function cadastrar() {
-            const n = document.getElementById('r-name').value;
-            const e = document.getElementById('r-email').value.toLowerCase().trim();
-            const p = document.getElementById('r-pass').value;
-            if(!n || !e || !p) return alert("Preencha todos os campos!");
-            let u = JSON.parse(localStorage.getItem('bx_u'));
-            if(u.find(x => x.email === e)) return alert("E-mail já cadastrado!");
-            u.push({name: n, email: e, pass: p});
-            localStorage.setItem('bx_u', JSON.stringify(u));
-            alert("Conta criada com sucesso!");
-            irParaLogin();
-        }
+    const celularesValidos = [
+        "samsung", "galaxy", "a10", "a20", "a30", "a50", "a51", "a71",
+        "s21", "s22", "s23",
+        "iphone", "iphone 11", "iphone 12", "iphone 13", "iphone 14", "iphone 15",
+        "xiaomi", "redmi", "note 8", "note 9", "note 10", "note 11", "note 12",
+        "poco", "poco x3", "poco x5",
+        "motorola", "moto g", "moto g20", "moto g30", "moto g60", "moto g100"
+    ];
 
-        function entrar() {
-            const e = document.getElementById('l-email').value.toLowerCase().trim();
-            const p = document.getElementById('l-pass').value;
-            let u = JSON.parse(localStorage.getItem('bx_u'));
-            
-            // Verifica se é admin ou usuário comum
-            let conta = u.find(x => x.email === e && x.pass === p);
-            if(!conta && ADMINS_AUTORIZADOS.includes(e)) conta = {name: "Admin", email: e};
+    let encontrado = celularesValidos.some(nome => celular.includes(nome));
 
-            if(conta) {
-                localStorage.setItem('bx_l', JSON.stringify(conta));
-                location.reload();
-            } else {
-                alert("E-mail ou Senha incorretos!");
-            }
-        }
+    if (!encontrado) {
+        alert("Celular não encontrado");
+        return;
+    }
 
-        function logout() { localStorage.removeItem('bx_l'); location.reload(); }
+    let dados = {
+        geral: gerarNumero(150, 200),
+        redDot: gerarNumero(140, 190),
+        mira2x: gerarNumero(130, 180),
+        mira4x: gerarNumero(120, 170),
+        awm: gerarNumero(70, 120),
+        olhadinha: gerarNumero(140, 190),
+        dpi: gerarNumero(400, 800),
+        botao: gerarNumero(50, 100)
+    };
 
-        window.onload = function() {
-            const user = JSON.parse(localStorage.getItem('bx_l'));
-            if(user) {
-                document.getElementById('auth-screen').style.display = 'none';
-                document.getElementById('main-app').style.display = 'block';
-                document.getElementById('u-name').innerText = user.name;
-                
-                // Libera botão de admin apenas para os autorizados
-                if(ADMINS_AUTORIZADOS.includes(user.email)) {
-                    document.getElementById('admin-btn').style.display = 'flex';
-                    document.getElementById('u-role').innerText = "Administrador Master";
-                    document.getElementById('u-role').style.color = "var(--primary)";
-                }
-                renderProdutos();
-            }
-        };
+    document.getElementById("sensiDados").innerHTML = `
+        <p>Celular <span class="valor">${celular}</span></p>
+        <p>Geral <span class="valor">${dados.geral}</span></p>
+        <p>Red Dot <span class="valor">${dados.redDot}</span></p>
+        <p>Mira 2x <span class="valor">${dados.mira2x}</span></p>
+        <p>Mira 4x <span class="valor">${dados.mira4x}</span></p>
+        <p>AWM <span class="valor">${dados.awm}</span></p>
+        <p>Olhadinha <span class="valor">${dados.olhadinha}</span></p>
+        <hr>
+        <p>DPI <span class="valor">${dados.dpi}</span></p>
+        <p>Botão <span class="valor">${dados.botao}%</span></p>
+    `;
 
-        function renderProdutos() {
-            const itens = JSON.parse(localStorage.getItem('bx_i'));
-            const container = document.getElementById('products');
-            container.innerHTML = '';
-            itens.forEach((item, i) => {
-                const div = document.createElement('div');
-                div.className = `price-card ${i === 0 ? 'active' : ''}`;
-                div.innerHTML = `<span class="amount">${item.n}</span><small>R$ ${item.p.toFixed(2).replace('.', ',')}</small>`;
-                div.onclick = () => {
-                    document.querySelectorAll('.price-card').forEach(x => x.classList.remove('active'));
-                    div.classList.add('active');
-                    selecionado = item;
-                    atualizarLinks();
-                };
-                container.appendChild(div);
-                if(i === 0) { selecionado = item; atualizarLinks(); }
-            });
-        }
+    document.getElementById("home").style.display = "none";
+    document.getElementById("resultado").style.display = "block";
+}
 
-        function atualizarLinks() {
-            document.getElementById('total-text').innerText = `R$ ${selecionado.p.toFixed(2).replace('.', ',')}`;
-            const nick = document.getElementById('nick').value || "[NICK NÃO INFORMADO]";
-            const texto = encodeURIComponent(`Olá! Quero Comprar Robux.\n\n📦 Pacote: ${selecionado.n}\n👤 Nick: ${nick}\n💰 Valor: R$ ${selecionado.p.toFixed(2)}`);
-            
-            // Configura os links dos dois números
-            document.getElementById('wa-1').href = `https://wa.me/5515998149457?text=${texto}`;
-            document.getElementById('wa-2').href = `https://wa.me/5515996637490?text=${texto}`;
-        }
+function voltar() {
+    document.getElementById("home").style.display = "block";
+    document.getElementById("resultado").style.display = "none";
+}
+</script>
 
-        // Atualiza os links em tempo real quando digita o nick
-        document.getElementById('nick').addEventListener('input', atualizarLinks);
-
-        function openAdmin() {
-            document.getElementById('m-admin').style.display = 'flex';
-            const list = document.getElementById('admin-list');
-            const itens = JSON.parse(localStorage.getItem('bx_i'));
-            list.innerHTML = '';
-            itens.forEach(it => {
-                list.innerHTML += `<div style="margin-bottom:15px;">
-                    <p style="font-size: 0.7rem; color: gray;">${it.n}</p>
-                    <input type="number" step="0.01" value="${it.p}" id="edit-p-${it.id}" style="width:100%; padding:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
-                </div>`;
-            });
-        }
-
-        function salvarPrecos() {
-            let itens = JSON.parse(localStorage.getItem('bx_i'));
-            itens.forEach(it => {
-                it.p = parseFloat(document.getElementById(`edit-p-${it.id}`).value);
-            });
-            localStorage.setItem('bx_i', JSON.stringify(itens));
-            alert("Preços atualizados com sucesso!");
-            location.reload();
-        }
-
-        function openNav() { document.getElementById('menu').classList.add('open'); }
-        function closeNav() { document.getElementById('menu').classList.remove('open'); }
-        function closeAdmin() { document.getElementById('m-admin').style.display = 'none'; }
-    </script>
 </body>
-    </html>
-    
+</html>
